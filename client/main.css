@@ -1,0 +1,48 @@
+/* CSS declarations go here */
+body{
+	background-color:#496074;
+}
+
+.logo{
+	width:80%;
+	border-radius:10px;
+	padding:10px;
+	margin-left: 200px;
+	background-color: #e7f0ed;
+	display:block;
+	margin-bottom:20px;
+}
+.login{
+	width:80%;
+	padding:10px;
+	border-radius:10px;
+	margin-left: 200px;
+	background-color: #e7f0ed;
+}
+.user-input{
+	width:80%;
+	padding:10px;
+	border-radius:10px;
+	margin-left: 200px;
+	margin-bottom:20px;
+	background-color: #e7f0ed;
+}
+
+.dis-board{
+	overflow-x:auto;
+	width:80%;
+	height:400px;
+	margin-left: 200px;
+	padding:10px;
+	border-radius:10px;
+	background-color: #e7f0ed;
+	display:block;
+	margin-bottom:20px;
+}
+.dis-board ul{
+	background-color:white;
+	border-radius:5px;
+}
+.user-input input{
+	width:70%;
+}
