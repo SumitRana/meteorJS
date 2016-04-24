@@ -3,9 +3,10 @@
     {{#if currentUser}}
 
     <div class="user-input">
-      <h3>Second Page - User Logged in - Welcome</h3>
+      <h3>Second Page - User Logged in - Welcome - {{currentUser.email[0].address}}</h3>
       <form class="new-task">
-        <input type="text" name="text" placeholder="Submit a post" />
+       <!-- <input type="text" name="text" placeholder="Submit a post" />  -->
+       <textarea rows="4" cols="100" placeholder="Add message .." name="text"></textarea>
         <button type="submit">Push Post</button>
       </form>
     </div>

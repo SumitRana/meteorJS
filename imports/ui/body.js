@@ -7,6 +7,7 @@ Template.body.helpers({
 	tasks(){
 		return Tasks.find({});
 	},
+	
 });
 
 Template.body.events({
