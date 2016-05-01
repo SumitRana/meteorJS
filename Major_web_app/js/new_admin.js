@@ -6,6 +6,23 @@ function getstore(){
   return localStorage.getItem('requiredkey');
 }
 
+function deleteProduct(){
+  var p = window.prompt('Are you sure ..? (yes/no)');
+  if(p == 'yes')
+  {
+   $.ajax({
+      type: 'DELETE',
+      url:baseurl+'/api/products/'+producthash+'/',
+      beforeSend: function(xhr){xhr.setRequestHeader('Authorization', "Token "+token);
+      },
+      success: function(data) {
+          console.log("Hurray");    
+          window.alert("Product deleted Successfully");
+      }
+    }); 
+  }
+}
+
 function updateProduct()
 { var d = { "name" : document.getElementById("nameUpdate").value,
           "price" : document.getElementById("priceUpdate").value,
@@ -120,7 +137,7 @@ function render(rdata){
 
     var button3 = document.createElement('button');
     button3.className = "btn btn-default btn-sm";
-    button1.addEventListener('click','');
+    button1.addEventListener('click',function(){ deleteProduct(rdata.hash_token); });
      var span3 = document.createElement('span');
      span3.className = "glyphicon glyphicon-trash";
      button3.appendChild(span3);
