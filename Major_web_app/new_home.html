@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<!-- Material Design fonts -->
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/icon?family=Material+Icons">
+
+  <!-- Bootstrap -->	
+
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <style>
+  body{
+  	width:95%;
+	margin-left:50px;
+	background-image:url('images/background.jpg');
+	background-position:no-repeat;
+  }
+  </style>
+</head>
+<body>
+	<div class="row">
+	<div class="container col-md-10" style="margin-top:10px;">
+		 	 <div class="jumbotron" style="background-color:white;font-size:15px;">
+		 	 <img src="images/supermart.png" style="width:100%;padding:0 50px 0 50px;" alt="image not found"></img>
+		    
+			   <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">learn more..</button>
+			    <div id="demo" class="collapse">
+			    This page is only accesible to the owner/ administrator of the store. This page provide complete info about the products present in the store and also the capablity to add, remove or update any product present in the store.</div>
+		
+			 	 </div>
+			</div>
+	</div>
+
+	<div class="row">
+	 <button type="button" class="col-md-4 btn btn-primary" style="margin-left:30px;" onclick="$('#loginmodal').modal();">Log in </button>
+	 <button type="button" class="col-md-4 btn btn-danger" style="margin-left:30px;" onclick="$('#registermodal').modal();">New Sign up</button>
+	</div>
+
+	<div class="modal fade" id="loginmodal" role="dialog">
+    <div class="modal-dialog" style="width:60%">
+    
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">LOGIN</h4>
+        </div>
+        <div class="modal-body" style="font-family:Kaushan Script; color: black; background-color:rgb(63, 120, 152);">
+              <div class="row">
+              <label class="col-sm-2 control-label">Username(email):</label>
+            <div class="col-sm-10">
+              <input class="form-control" id="email" type="text"  required>
+            </div></div>
+            <br>
+             <div class="row">
+              <label class="col-sm-2 control-label">Password:</label>
+            <div class="col-sm-10">
+              <input class="form-control" id="password" type="text" required>
+            </div></div>       
+            <br><br><br>
+           <button type="button" class="btn btn-danger" onclick="send()">log in</button>
+          
+        </div>
+        </div>
+      </div>
+      
+     </div>
+
+    <div class="modal fade" id="registermodal" role="dialog">
+    <div class="modal-dialog" style="width:40%">
+    
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">NEW SIGN UP</h4>
+        </div>
+        <div class="modal-body" style="font-family:Kaushan Script; color: black; background-color:rgb(63, 120, 152);">
+          <p><h4>..............</h4></p>         
+        </div>
+        </div>
+      </div>
+      
+     </div>
+	</body>
+	</html>

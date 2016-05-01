@@ -1,0 +1,196 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<!-- Material Design fonts -->
+  <link rel="stylesheet" type="text/css" href="https://www.fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+  <link rel="stylesheet" type="text/css" href="https://www.fonts.googleapis.com/icon?family=Material+Icons">
+
+  <!-- Bootstrap -->	
+
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="css/new_style.css">  
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="js/new_admin.js" ></script>
+  <script src="js/qrcode.min.js"></script>
+  <style>
+  body{
+  	width:95%;
+	margin-left:50px;
+	background-image:url('images/background.jpg');
+	background-position:no-repeat;
+  }
+  </style>
+</head>
+<body><div class="row">
+		<div class="container col-md-10" style="margin-top:10px;">
+		 	 <div class="jumbotron" style="background-color:white;font-size:15px;">
+		 	 <img src="images/supermart.png" style="width:50%;float:left;padding-right:10px;" alt="image not found"></img>
+		    <h2 style="text-align:center;">Admin Panel</h2><br><br>
+		   
+			   <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">learn more..</button>
+			    <div id="demo" class="collapse">
+			    This page is only accesible to the owner/ administrator of the store. This page provide complete info about the products present in the store and also the capablity to add, remove or update any product present in the store.</div>
+		
+			 	 </div>
+			</div> 	
+		<div class="col-md-2" style="margin-top:10px;">
+		  <button type="button" class="btn btn-primary" style="padding: 6px 27px 6px 15px;line-height:6.0;" onclick="$('#addmodal').modal();">Add New Product</button><br><br>
+		  <button type="button" class="btn btn-danger"style="line-height:6.0;" onclick="javascript:plotgraph();$('#graphmodal').modal();">Show Graphical view</button>
+
+		</div>
+		
+		</div>		
+
+	<div class="panel panel-info">
+	  <div class="panel-heading" style="padding:3px 3px 3px 10px;">
+	    <h3 class="panel-title">Complete Product Statistics of the Store :</h3>
+	  </div>
+	  <div class="panel-body">
+			<div class="table-responsive">          
+			  <table class="table" id="t01">
+			    <thead>
+			      <tr>
+			        <th>#</th>
+			        <th>Product-Name</th>
+			        <th>Product-id</th> 
+			        <th>Quantity-left</th>
+			        <th>Price</th>
+			        <th>Options</th>
+			      </tr>
+			    </thead>
+			    			    
+			  </table>
+			  </div>
+	 </div>
+	    
+	  </div>
+	
+	 <!-- add product -->
+	<div class="modal fade" id="addmodal" role="dialog">
+    <div class="modal-dialog" style="width:80%">
+   
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">ADD NEW PRODUCT TO THE STORE</h4>
+        </div>
+        <div class="modal-body" style="font-family:Kaushan Script; color:black; background-color:rgb(63, 120, 152);">
+          <p><h4>Enter product details</h4></p>
+          <div class="row">
+          <label class="col-sm-2 control-label">Product Name :</label>
+	      <div class="col-sm-10">
+	        <input class="form-control" id="nameAdd" type="text"  required>
+	      </div></div>
+	      <br>
+	       <div class="row">
+          <label class="col-sm-2 control-label">Product Price :</label>
+	      <div class="col-sm-10">
+	        <input class="form-control" id="priceAdd" type="text" required>
+	      </div></div>
+	      <br>
+	       <div class="row">
+          <label class="col-sm-2 control-label">Initial Quantity :</label>
+	      <div class="col-sm-10">
+	        <input class="form-control" id="quantityAdd" type="text" required>
+	      </div></div>
+	      <br>
+	       <div class="row">
+          <label class="col-sm-2 control-label">Category :</label>
+	      <div class="col-sm-10">
+	        <input class="form-control" id="categoryAdd" type="text" >
+	      </div></div>
+	      <br><br><br>
+	      <button type="button" class="btn btn-danger" onclick="addProduct()">Click to submit the product</button>
+        </div>
+        </div>
+      </div>
+      
+     </div>
+
+     <!--graph -->
+     <div class="modal fade" id="graphmodal" role="dialog">
+    <div class="modal-dialog" style="width:80%">
+    
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">COMPLETE DATA PLOTS</h4>
+        </div>
+        <div class="modal-body" style="font-family:Kaushan Script; color: black; background-color:rgb(63, 120, 152);">
+          <p><h4>Products Visual Representation</h4></p>         
+			<div id="mygraph" style="width:800px;height:350px;margin-left:150px;"></div>
+        </div>
+        </div>
+      </div>
+      
+     </div>
+
+     <!-- update -->
+    <div class="modal fade" id="updatemodal" role="dialog">
+    <div class="modal-dialog" style="width:80%">
+    
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">UPDATE THE SELECTED PRODUCT OF THE STORE</h4>
+        </div>
+        <div class="modal-body" style="font-family:Kaushan Script; color: black; background-color:rgb(63, 120, 152);">
+          <p><h4>Enter new product details.</h4></p>
+          <div id="secret" style="display:block;"></div>
+          <div class="row">
+          <label class="col-sm-2 control-label">New Name :</label>
+	      <div class="col-sm-10">
+	        <input class="form-control" id="nameUpdate" type="text"  required>
+	      </div></div>
+	      <br>
+	       <div class="row">
+          <label class="col-sm-2 control-label">New Product Price :</label>
+	      <div class="col-sm-10">
+	        <input class="form-control" id="priceUpdate" type="text" required>
+	      </div></div>
+	      <br>
+	       <div class="row">
+          <label class="col-sm-2 control-label">New Quantity :</label>
+	      <div class="col-sm-10">
+	        <input class="form-control" id="quantityUpdate" type="text" required>
+	      </div></div>
+	      <br>
+	       <div class="row">
+          <label class="col-sm-2 control-label">New Category :</label>
+	      <div class="col-sm-10">
+	        <input class="form-control" id="categoryUpdate" type="text" >
+	      </div></div>
+	      <br><br><br>
+	      <button type="button" class="btn btn-danger" onclick="updateProduct()">Click to update the product</button>
+         
+        </div>
+        </div>
+      </div>
+      
+     </div>
+
+     <!-- QRCode -->
+    <div class="modal fade" id="qrmodal" role="dialog">
+    <div class="modal-dialog" style="width:80%">
+    
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">PRODUCTS QR CODE</h4>
+        </div>
+        <div class="modal-body" style="font-family:Kaushan Script; color: black; background-color:rgb(63, 120, 152);">
+          <p><h4>qr code .......</h4></p>         
+          <div id="graph">
+			<div id="qrCode">
+				</div>
+		</div>
+        </div>
+        </div>
+      </div>
+      
+     </div>
+
+</body>
+</html>
